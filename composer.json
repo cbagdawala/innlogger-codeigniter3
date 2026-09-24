@@ -1,0 +1,35 @@
+{
+    "name": "cbagdawala/innlogger-codeigniter3",
+    "description": "InnLogger SDK for CodeIgniter 3: signed (HMAC-SHA256), fail-silent log and exception shipping to an InnLogger portal.",
+    "type": "library",
+    "license": "proprietary",
+    "keywords": ["logging", "codeigniter", "codeigniter3", "innlogger", "monitoring"],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "suggest": {
+        "ext-curl": "Preferred HTTP transport (millisecond timeouts). Falls back to PHP streams when missing."
+    },
+    "autoload": {
+        "psr-4": {
+            "InnLogger\\CodeIgniter3\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "InnLogger\\CodeIgniter3\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
