@@ -4,6 +4,12 @@
     "type": "library",
     "license": "proprietary",
     "keywords": ["logging", "codeigniter", "codeigniter3", "innlogger", "monitoring"],
+    "authors": [
+        {
+            "name": "Chintan Bagdawala",
+            "email": "chintan@bagdawala.com"
+        }
+    ],
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*"

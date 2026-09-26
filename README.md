@@ -23,9 +23,24 @@ misconfigured, your application carries on as normal.
 
 ### A. Composer (recommended)
 
-```bash
-composer require cbagdawala/innlogger-codeigniter3
+The package is published to the private repository `github.com/cbagdawala/innlogger-codeigniter3`.
+The server that runs Composer needs read access to it. The simplest way is a GitHub token with
+**Contents: read-only** on the SDK repositories, set once per server
+(`composer config --global --auth github-oauth.github.com <read-only-token>`). Add the repository
+to your application's `composer.json`:
+
+```json
+"repositories": [
+    { "type": "vcs", "url": "https://github.com/cbagdawala/innlogger-codeigniter3" }
+]
 ```
+
+```bash
+composer require cbagdawala/innlogger-codeigniter3:^1.0
+```
+
+With an SSH key instead of a token, use
+`{ "type": "vcs", "url": "git@github.com:cbagdawala/innlogger-codeigniter3.git", "no-api": true }`.
 
 1. Enable Composer in `application/config/config.php`: `$config['composer_autoload'] = TRUE;` (or the path to `vendor/autoload.php`).
 2. Copy `vendor/cbagdawala/innlogger-codeigniter3/application/libraries/Innlogger.php` and
@@ -263,6 +278,8 @@ rules decide separately what generates an alert. Heartbeats ignore the threshold
   deliberately, and use `redact_fields` for any domain-specific keys.
 
 ## Development
+
+> This package is developed in the InnLogger repository (`inn-logger-prime-2026`, under `packages/`) and published here automatically. Make changes there, not in the published repository; see `docs/operations/sdk-releases.md` in that repository.
 
 The tests use PHPUnit 9.6 with a fake transport, so no CodeIgniter install is needed. The few CI
 globals the drop-in files use are stubbed in `tests/bootstrap.php`. Run them in the portal
