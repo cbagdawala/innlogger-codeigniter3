@@ -2,7 +2,7 @@
     "name": "cbagdawala/innlogger-codeigniter3",
     "description": "InnLogger SDK for CodeIgniter 3: signed (HMAC-SHA256), fail-silent log and exception shipping to an InnLogger portal.",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "keywords": ["logging", "codeigniter", "codeigniter3", "innlogger", "monitoring"],
     "authors": [
         {

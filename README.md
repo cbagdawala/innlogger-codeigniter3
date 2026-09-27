@@ -23,24 +23,9 @@ misconfigured, your application carries on as normal.
 
 ### A. Composer (recommended)
 
-The package is published to the private repository `github.com/cbagdawala/innlogger-codeigniter3`.
-The server that runs Composer needs read access to it. The simplest way is a GitHub token with
-**Contents: read-only** on the SDK repositories, set once per server
-(`composer config --global --auth github-oauth.github.com <read-only-token>`). Add the repository
-to your application's `composer.json`:
-
-```json
-"repositories": [
-    { "type": "vcs", "url": "https://github.com/cbagdawala/innlogger-codeigniter3" }
-]
-```
-
 ```bash
-composer require cbagdawala/innlogger-codeigniter3:^1.0
+composer require cbagdawala/innlogger-codeigniter3
 ```
-
-With an SSH key instead of a token, use
-`{ "type": "vcs", "url": "git@github.com:cbagdawala/innlogger-codeigniter3.git", "no-api": true }`.
 
 1. Enable Composer in `application/config/config.php`: `$config['composer_autoload'] = TRUE;` (or the path to `vendor/autoload.php`).
 2. Copy `vendor/cbagdawala/innlogger-codeigniter3/application/libraries/Innlogger.php` and
@@ -279,21 +264,19 @@ rules decide separately what generates an alert. Heartbeats ignore the threshold
 
 ## Development
 
-> This package is developed in the InnLogger repository (`inn-logger-prime-2026`, under `packages/`) and published here automatically. Make changes there, not in the published repository; see `docs/operations/sdk-releases.md` in that repository.
+> This repository is a read-only mirror, published automatically from the private InnLogger repository. Pull requests here would be overwritten; please open an issue instead.
 
 The tests use PHPUnit 9.6 with a fake transport, so no CodeIgniter install is needed. The few CI
-globals the drop-in files use are stubbed in `tests/bootstrap.php`. Run them in the portal
-container, never on the local machine:
+globals the drop-in files use are stubbed in `tests/bootstrap.php`.
 
 ```bash
-mutagen sync flush innlogger
-ssh divaa-docker 'docker exec -w /var/www/html/packages/sdk-codeigniter3 innlogger-app composer install --no-interaction'
-ssh divaa-docker 'docker exec -w /var/www/html/packages/sdk-codeigniter3 innlogger-app ./vendor/bin/phpunit'
+composer install
+./vendor/bin/phpunit
 ```
 
-Syntax check against PHP 7.4, on the host:
+Syntax check against PHP 7.4:
 
 ```bash
-docker run --rm -v /home/chintan/apps/inn-logger-prime-2026/packages/sdk-codeigniter3:/app php:7.4-cli \
+docker run --rm -v "$PWD":/app php:7.4-cli \
   sh -c 'find /app/src /app/application -name "*.php" -exec php -l {} \;'
 ```
